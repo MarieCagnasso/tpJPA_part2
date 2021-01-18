@@ -1,0 +1,39 @@
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<title>Ajouter une catégorie</title>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link rel="stylesheet" type="text/css" th:href="@{/css/style.css}" href="../static/css/style.css"/>	
+	</head>
+	<body>
+		<h1>Ajouter une galerie</h1>
+
+		<form th:object="${tableau}" method="POST" th:action="@{save}">
+			<div class="column">
+				<label for="titre">Titre:</label>
+				<input type="text" th:field="*{titre}" placeholder="Titre du tableau"/>
+			</div>
+			<div class="column">
+				<label for="support">support:</label>
+				<input type="text" th:field="*{support}" placeholder="support du tableau"/>
+			</div>
+			<div class="dimension">
+				<label for="support">dimension:</label>
+				<input type="text" th:field="*{dimension}" placeholder="dimension du tableau"/>
+			</div>
+			<div class="auteur">
+				<label for="auteur">auteur:</label>
+				<select name="auteur" id="auteurs"  placeholder="auteur du tableau">
+					<option th:each="a: ${artistes}" th:value="${a.id}">[[${a.nom}]]</option>
+					<option th:value="null">Anonyme</option>
+				</select>
+				<hr/>
+				<input type="submit" value="Enregistrer" /> <input type="reset" value="Réinitialiser" />
+			</div>
+		</form>		
+		<hr/>
+		<a th:href="@{/}" href="../static/index.html">Retour au menu</a>
+		<hr/>
+	</body>
+</html>
